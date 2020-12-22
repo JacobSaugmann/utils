@@ -1,0 +1,9 @@
+﻿CREATE USER [utils_user]
+	FOR LOGIN [utils_user]
+	WITH DEFAULT_SCHEMA = dbo
+
+GO
+
+GRANT CONNECT TO [utils_user]
+GO
+GRANT INSERT,UPDATE,DELETE,ALTER TO [utils_user]

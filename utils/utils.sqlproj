@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>utils</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8243ec61-33e6-4fab-9dcf-75c6a57565e6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>utils</RootNamespace>
+    <AssemblyName>utils</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <Recovery>SIMPLE</Recovery>
+    <PageVerify>CHECKSUM</PageVerify>
+    <DefaultFilegroup>DATA</DefaultFilegroup>
+    <AllowSnapshotIsolation>True</AllowSnapshotIsolation>
+    <QueryStoreDesiredState>ReadWrite</QueryStoreDesiredState>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Database settings" />
+    <Folder Include="Security" />
+    <Folder Include="Utils_index" />
+    <Folder Include="Utils_index\Tables" />
+    <Folder Include="Utils_index\Stored procedures" />
+    <Folder Include="Config" />
+    <Folder Include="Config\Tables" />
+    <Folder Include="Utils_index\Functions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Database settings\FileGroup_Data.sql" />
+    <Build Include="Database settings\log_file.sql" />
+    <Build Include="Database settings\util_files.sql" />
+    <Build Include="Security\Create_Schemas.sql" />
+    <Build Include="Security\Logins.sql" />
+    <Build Include="Security\Users.sql" />
+    <Build Include="Database settings\primary_file.sql" />
+    <Build Include="Utils_index\Tables\indexes.sql" />
+    <Build Include="Utils_index\Stored procedures\pre_index_table.sql" />
+    <Build Include="Utils_index\Stored procedures\pre_index_include_columns.sql" />
+    <Build Include="Utils_index\Stored procedures\get_index_by_database_name.sql" />
+    <Build Include="Config\Tables\settings.sql" />
+    <Build Include="Utils_index\Stored procedures\maintain_index_data.sql" />
+    <Build Include="Utils_index\Functions\get_index_statements.sql" />
+    <Build Include="Utils_index\Stored procedures\maintain_indexes.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="utils_localhost.publish.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project>
