@@ -69,6 +69,7 @@
     <Folder Include="Config" />
     <Folder Include="Config\Tables" />
     <Folder Include="Utils_index\Functions" />
+    <Folder Include="Utils_index\Triggers" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Database settings\FileGroup_Data.sql" />
@@ -86,6 +87,7 @@
     <Build Include="Utils_index\Stored procedures\maintain_index_data.sql" />
     <Build Include="Utils_index\Functions\get_index_statements.sql" />
     <Build Include="Utils_index\Stored procedures\maintain_indexes.sql" />
+    <Build Include="Utils_index\Triggers\tgr_enableindex.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="utils_localhost.publish.publish.xml" />
