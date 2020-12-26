@@ -88,6 +88,7 @@
     <Build Include="Utils_index\Functions\get_index_statements.sql" />
     <Build Include="Utils_index\Stored procedures\maintain_indexes.sql" />
     <Build Include="Utils_index\Triggers\tgr_enableindex.sql" />
+    <Build Include="Utils_index\Stored procedures\index_exists_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="utils_localhost.publish.publish.xml" />
@@ -97,5 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\130\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+    </ArtifactReference>
   </ItemGroup>
 </Project>
