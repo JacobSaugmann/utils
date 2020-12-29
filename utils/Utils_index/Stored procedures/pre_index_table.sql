@@ -3,7 +3,6 @@ CREATE
 --ALTER 
 PROC util_index.pre_index_table (@database_name SYSNAME)
 AS
-
 IF @database_name IS NULL
 	SET @database_name = DB_NAME()
 
@@ -32,7 +31,7 @@ SELECT sc.name [schema_name],
 	END + CASE
 		                                 WHEN ix.ignore_dup_key = 1
 			THEN ''IGNORE_DUP_KEY = ON, '' ELSE ''IGNORE_DUP_KEY = OFF, ''
-	END + ''SORT_IN_TEMPDB = OFF, FILLFACTOR ='' + CAST(IIF(ix.fill_factor = 0, 70,ix.fill_factor) AS IndexOptions,
+	END + ''SORT_IN_TEMPDB = OFF, FILLFACTOR ='' + CAST(IIF(ix.fill_factor = 0, 70,ix.fill_factor) AS VARCHAR(3))  AS IndexOptions,
 	   ix.is_disabled,
 	   FILEGROUP_NAME(ix.data_space_id) FileGroupName
 FROM '+@database_name+ '.sys.tables t            

@@ -6,12 +6,12 @@ AS
 	IF OBJECT_ID('util_index.tmp_backup_index', 'U') IS NOT NULL
 	BEGIN
 		TRUNCATE TABLE util_index.tmp_backup_index
-		RAISERROR('INFO: | table util_index.tmp_backup_index truncated',0,1) WITH NOWAIT
+		RAISERROR('INFO:  (util_index.maintain_index_data)  | table util_index.tmp_backup_index truncated',0,1) WITH NOWAIT
 	END
 
 	DROP TABLE IF EXISTS #db_names
 	SELECT s.id,
-    	   s.value AS database_name
+    	   util.quotename_if_required(s.value) AS database_name
     	INTO #db_names
     FROM config.settings s
     WHERE s.category = 'index_mgnt'

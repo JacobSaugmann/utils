@@ -70,7 +70,7 @@ CREATE TABLE #pre_index (
 
 
 INSERT INTO #pre_index
-EXEC util_index.pre_index_table @database_name = 'AdventureWorks2008R2'
+EXEC util_index.pre_index_table @database_name = @database_name
 
 DECLARE CursorIndex CURSOR
 FOR

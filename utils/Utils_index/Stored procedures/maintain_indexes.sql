@@ -15,9 +15,9 @@ SELECT  i.id,
 		ix.drop_statement,
 		ix.disblae_stmt,
 		ix.create_stmt,
-		i.database_name,
-		i.index_name,
-		i.schema_name
+		util.quotename_if_required(i.database_name) AS database_name,
+		util.quotename_if_required(i.index_name) AS index_name,
+		util.quotename_if_required(i.schema_name) AS schema_name
 FROM [util_index].[indexes] i
 CROSS APPLY util_index.get_index_statements(i.id) ix
 WHERE (i.[drop] = 1 OR i.[disable] = 1 OR i.[create] = 1)  AND i.ignore = 0)
@@ -30,7 +30,7 @@ WHILE @@FETCH_STATUS = 0
     BEGIN
 		/*Do Work*/
 
-		SET @msg = 'DEBUG (util_index.maintain_indexes) -| is_drop: '+IIF(@is_drop = 1, 'Yes', 'No') + ' is_disable: '+IIF(@is_disable = 1, 'Yes', 'No')+ ' is create: ' + IIF(@is_create = 1, 'Yes', 'No')
+		SET @msg = 'DEBUG (util_index.maintain_indexes) -| index:'+ @index_name +' | is_drop: '+IIF(@is_drop = 1, 'Yes', 'No') + ' is_disable: '+IIF(@is_disable = 1, 'Yes', 'No')+ ' is create: ' + IIF(@is_create = 1, 'Yes', 'No')
 		RAISERROR(@msg,0,1) WITH NOWAIT
 
 
@@ -87,10 +87,6 @@ WHILE @@FETCH_STATUS = 0
         FETCH NEXT FROM cursor_index_mgnt INTO @id,@is_drop,@is_disable, @is_create,@drop_statement,@disblae_statement,@create_statement, @database_name,@index_name, @schema_name
 
     END;
-
-CLOSE cursor_index_mgnt
-DEALLOCATE cursor_index_mgnt 
-
 
 CLOSE cursor_index_mgnt
 DEALLOCATE cursor_index_mgnt 
